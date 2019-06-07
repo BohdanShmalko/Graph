@@ -1,0 +1,52 @@
+.fixed{
+  position: relative;
+  width: 1px;
+  height: 1px;
+  margin: auto;
+}
+.ground{
+  margin-left: -570px;
+  margin-top: 20px;
+  background-color: white;
+  width: 1150px;
+  height: 1800px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.7);
+  border-radius: 10px;
+}
+center {
+  margin-left: -60px;
+}
+textarea {
+  position: absolute;
+  margin-left: 20px;
+}
+#c {
+  background-image: url(../images/back_canv.png);
+  margin-top: 70px;
+  margin-left: 60px;
+  border: 3px solid black;
+}
+#c1 {
+  margin-top: 20px;
+  margin-left: 60px;
+  border: 3px solid black;
+}
+#knp1 {
+  position: absolute;
+  margin-top: 40px;
+  margin-left: -150px;
+}
+#knp2 {
+  position: absolute;
+  margin-top: 80px;
+  margin-left: -150px;
+}
+#sort {
+  margin-left: 10px;
+}
+.sort {
+  margin-left: 780px;
+  margin-right: 30px;
+  margin-top: -80px;
+  border: 3px solid black;
+}
