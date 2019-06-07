@@ -1,0 +1,72 @@
+<DOCTIPE html>
+  <html lang="ua">
+  <head>
+    <meta charset="UTF-8">
+    <title> Пробна версія </title>
+    <link rel="stylesheet" href="../css/dws-menu.css">
+    <link rel="stylesheet" href="../css/ground.css">
+    <link rel="stylesheet" href="../css/shapka.css">
+</head>
+<body>
+  <script src="../js/shapka.js"></script>
+  <script src="../js/menu.js"></script>
+
+  <div class="ground">
+    <br>
+    <p style="margin-left:20px;font-family: monospace;">Введіть матрицю суміжності. Кожне значення пишіть через кому
+      (крім останнього елемента рядка).</p><p style="margin-left:20px;font-family: monospace;">Відступ між рядками здійснюється через
+       enter. Якщо цифри не влізають у рядок, то просто розтяніть</p><p style="margin-left:20px;font-family: monospace;">його.</p>
+
+       <span class="matrix_name"> Матрицю введіть тут :</span>
+    <textarea id="ar" style="width:220px;height:220px;"></textarea>
+
+      <button id="knp1">Побудувати</button>
+      <button id="knp2">Наступний крок</button>
+
+      <div class="sort">
+        <center>
+        <h1><pre>    Меню сортування</pre></h1>
+          <pre>Розташування вершин :</pre>
+          <input type="radio" name="location" id="location1"></input><lable for="figure">Колом</lable>
+          <br>
+          <input type="radio" name="location" id="location2"checked></input><lable for="figure">Трикутником</lable>
+          <pre>Колір вершин :</pre>
+          <input type="radio" name="color" id="color1"></input><lable for="color">Чорний</lable>
+          <br>
+          <input type="radio" name="color" id="color2"></input><lable for="color">Червоний</lable>
+          <br>
+          <input type="radio" name="color" id="color3" checked></input><lable for="color">Різнобарвний</lable>
+          <pre>Будувати вручну :</pre>
+          <input type="radio" name="hend" id="hend1"></input><lable for="hend">Вершини</lable>
+          <br>
+          <input type="radio" name="hend" id="hend2"></input><lable for="hend">Ребра</lable>
+          <br>
+          <input type="radio" name="hend" id="hend3" checked></input><lable for="hend">Викл.</lable>
+          <!-- <pre> Особливі випадки побудови :</pre>
+          <lable for="tops" style="margin-left:50px;">Побудувати вершини :</lable><input style="width:40px;" id="tops"></input>
+          <button id="sort">Побудувати</button>
+          <br>
+          <input type="radio" name="neor1" id="neor"></input><lable for="neor">Показати ненапрямлені ребра</lable>
+          <br>
+          <input type="radio" name="neor2" id="neor"></input><lable for="neor">Показати компоненти зв'язності</lable> -->
+
+
+        </center>
+      </div>
+
+    <canvas id="c" width="1000" height="900"></canvas>
+    <canvas id="c1" width="1000" height="300"></canvas>
+  </div>
+
+<center><pre>Created by Bohdan Shmalko</pre></center>
+<script src="../js/prima/build.js"></script>
+<script src="../js/prima/conv.js"></script>
+<script src="../js/prima/circle.js"></script>
+<script src="../js/prima/triangle.js"></script>
+<script src="../js/prima/strategy.js"></script>
+<script src="../js/prima/observer.js"></script>
+<script src="../js/prima/decorator.js"></script>
+<script src="../js/prima/prima.js"></script>
+
+</body>
+</html>
