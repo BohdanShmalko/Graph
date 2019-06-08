@@ -49,8 +49,7 @@
       clf();
       const p = document.getElementById('ar').value;
       try {
-        storage.array = matrix(p);
-        storage.new = matrix(p);
+        storage.array = matrix(p);;
         countrina = storage.array.length;
         if (document.getElementById('location2').checked) OnTriangle();
         else if (document.getElementById('location1').checked) OnCircle();
