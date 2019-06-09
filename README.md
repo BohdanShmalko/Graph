@@ -20,24 +20,19 @@
 
 Для парсингу матриці я використав регулярні вирази, а також для розбиття - цикл.
 
-    const matrix = input => {
-      const P = [];
-      const arr = input.match(/\d+/g).map(Number);
-      storage.tops = Math.sqrt(arr.length);
-      if (storage.tops % 1 !== 0) return false;
-      let count1 = -1;
-      let count2;
-      for (let i = 0; i < arr.length; i++) {
-        if (i % sqrt === 0) {
-          count1++;
-          P[count1] = [];
-          count2 = 0;
-        }
-        P[count1][count2] = arr[i];
-        count2++;
-      }
-      return P;
-    };
+```javascript
+const matrix = input => {
+  const P = [];
+  const arr = input.match(/\d+/g).map(Number);
+  storage.tops = Math.sqrt(arr.length);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i % storage.tops === 0) P.push([]);
+    P[P.length - 1].push(arr[i]);
+  }
+  return P;
+};
+```
 
 ### Кнопки побудови та обходу графа
 
@@ -45,22 +40,24 @@
 
 Ці кнопки часто використовуються. Приклад використання:
 
-    knp1.onclick = function create() {
-      clf();
-      const p = document.getElementById('ar').value;
-      try {
-        storage.array = matrix(p);
-        storage.new = matrix(p);
-        countrina = storage.array.length;
-        if (document.getElementById('location2').checked) OnTriangle();
-        else if (document.getElementById('location1').checked) OnCircle();
-        document.getElementById('knp2').onclick = function() {
-          prima();
-        };
-        } catch (e) {
-          observable.send('You have entered the wrong matrix');
-        }
-      };
+```javascript
+knp1.onclick = function create() {
+  clf();
+  const p = document.getElementById('ar').value;
+  try {
+    storage.array = matrix(p);
+    storage.new = matrix(p);
+    countrina = storage.array.length;
+    if (document.getElementById('location2').checkedOnTriangle();
+    else if (document.getElementById('location1').checkedOnCircle();
+    document.getElementById('knp2').onclick = function() {
+      prima();
+    };
+    } catch (e) {
+      observable.send('You have entered the wrong matrix');
+    }
+  };
+```
 
 ### Поле, в якому описуються ваші дії
 
@@ -68,55 +65,55 @@
 
 Для створення цього поля я використав патерн Спостерігач (Observer), де в якості спостерігачів виступають рядки цього поля.
 
-
-    function Observable() {
-      //array for storing observers
-      storage.observers = [];
-      //send message for all observers
-      this.send = function(msg) {
-        for (let i = 0; i < storage.observers.length; i++) {
-          storage.observers[i].told(msg);
-        }
-      };
-      // add new observer
-      this.add = function(observer) {
-        storage.observers.push(observer);
-      };
+```javascript
+function Observable() {
+  //array for storing observers
+  storage.observers = [];
+  //send message for all observers
+  this.send = function(msg) {
+    for (let i = 0; i < storage.observers.length; i++) {
+      storage.observers[i].told(msg);
     }
+  };
+  // add new observer
+  this.add = function(observer) {
+    storage.observers.push(observer);
+  };
+}
+function Observer(job) {
+  //add method told that call callback
+  this.told = function(msg) {
+    job(msg);
+  };
+}
 
-    function Observer(job) {
-      //add method told that call callback
-      this.told = function(msg) {
-        job(msg);
-      };
-    }
+//object that storage messages
+const beams = {
+  count: false,
+  line1: '',
+  line2: '',
+  line3: '',
+  line4: '',
+  line5: '',
+  line6: '',
+  line7: '',
+  line8: '',
+  line9: '',
+  line10: '',
+  line11: '',
+};
 
-    //object that storage messages
-    const beams = {
-      count: false,
-      line1: '',
-      line2: '',
-      line3: '',
-      line4: '',
-      line5: '',
-      line6: '',
-      line7: '',
-      line8: '',
-      line9: '',
-      line10: '',
-      line11: '',
-    };
+//create new observer
+const obs1 = new Observer(((msg) => {
+  ctx2.clearRect(0, 0, 1000, 300);
+  if (beams.line11 !== '') beams.line1 = beams.line2;
+  if (beams.line1 !== '') beams.count = true;
+  else if (beams.line1 === '') beams.line1 = msg;
+  xsstring(10, 5, beams.line1);
+}));
 
-    //create new observer
-    const obs1 = new Observer(((msg) => {
-      ctx2.clearRect(0, 0, 1000, 300);
-      if (beams.line11 !== '') beams.line1 = beams.line2;
-      if (beams.line1 !== '') beams.count = true;
-      else if (beams.line1 === '') beams.line1 = msg;
-      xsstring(10, 5, beams.line1);
-    }));
-
-    observable.add(obs1);
+observable.add(obs1);
+```
 
 ### Меню сортування, яке також дає можливість побудови вручну
 
@@ -131,6 +128,7 @@
 
 Частина меню, для роботи якої використовується патерн Декоратор :
 
+```javascript
     //class that have method .get()
       function clearCanvas() {
         this.get = function() {
@@ -166,11 +164,13 @@
       Triangle.prototype = Object.create(Decorator.prototype);
       //create constructor
       Triangle.prototype.constructor = Triangle;
+```
 
 #### Будувати вручну
 
 Частина меню, для роботи якої використовується патерн Стратегія :
 
+```javascript
     //counter that say number of circles
     let countrina = storage.tops;
 
@@ -214,6 +214,7 @@
         Context.prototype.process = function() {
           return this.act.start();
         };
+```
 
 ### Графік, на якому будується граф
 
@@ -221,6 +222,7 @@
 
 1. Створив свої функції малювання, які основуються на функціях canvas.
 
+```javascript
         //easier to draw lines
         function lines(x1, x2, y1, y2, color) {
           let k = storage.Colors[color];
@@ -264,9 +266,11 @@
           ctx.arc(x + 15, storage.height - y - 185, radius, 0, duga, true);
           ctx.stroke();
         }
+```
 
 2. Створив алгоритм побудови кола :
 
+```javascript
         //builds circles from the matrix
         function circletops(matrix, radius) {
           clf();
@@ -340,54 +344,45 @@
           circletops(matrix, radius);
           circlerebra(matrix, radius, color);
         }
+```
 
 ### Обхід за алгоритмом Пріма
+
+```javascript
+    document.getElementById('knp2').onclick = function() {
+      prima();
+    };
 
 
     //algorithm Prima
     function prima() {
       const array = storage.array;
       clf();
-      let a = 0;
-      const skok = [];
-      let co = 0;
-      const rad = [];
-      const zk = [];
-      for (let i = 0; i < storage.tops; i++) {
-        rad[i] = 0;
-        skok[i] = 0;
-      }
-      let n = 0;
+
+      const U = [];
+
       for (let i = 0; i < storage.tops; i++) {
         for (let j = i; j < storage.tops; j++) {
           if (array[i][j] !== 0) {
-            a = i;
-            n = 1;
+            U.push(i);
             break;
           }
         }
-        if (n !== 0) {
-          break;
-        }
+        if (U.length !== 0) break;
       }
-
-      const U = [];
-      U[0] = a;
-      let p = 1;
 
       for (let i = 0; i < storage.tops; i++) {
-        array[i][a] = 0;
+        array[i][U[0]] = 0;
       }
 
-      form1(a + 1);
+      form1(U[0] + 1);
 
       function r() {
         const N = [0, 0, Infinity];
         for (let i = 0; i < U.length; i++) {
           for (let j = 0; j < storage.tops; j++) {
-            const m = U[i];
-            if (array[m][j] !== 0) {
-              if (N[2] > array[m][j]) {
+            if (array[U[i]][j] !== 0) {
+              if (N[2] > array[U[i]][j]) {
                 N[0] = U[i];
                 N[1] = j;
                 N[2] = array[U[i]][j];
@@ -396,27 +391,20 @@
           }
         }
 
-        const s = N[0];
-        zk[co] = N[0];
-        zk[co + 1] = N[1];
-        co += 2;
-        skok[s]++;
-        U[p] = N[1];
-        p++;
+        U.push(N[1]);
 
         for (let i = 0; i < storage.tops; i++) {
           array[i][N[1]] = 0;
         }
+
         if ( N[0] !==  N[1]) {
           form1(N[1] + 1);
           form2(N[0] + 1, N[1] + 1, N[2], true, 'other');
         };
+
       }
       document.getElementById('knp2').onclick = function() {
         r();
       };
     }
-
-    document.getElementById('knp2').onclick = function() {
-      prima();
-    };
+```

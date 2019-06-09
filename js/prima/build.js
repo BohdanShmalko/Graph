@@ -19,6 +19,7 @@ const clf = () => ctx.clearRect(0, 0, storage.width, storage.height);
 //converts string-matrix into matrix-js
 const matrix = input => {
   const P = [];
+  
   const arr = input.match(/\d+/g).map(Number);
   storage.tops = Math.sqrt(arr.length);
   storage.num = Math.ceil(storage.tops / 3);
@@ -28,16 +29,10 @@ const matrix = input => {
   if (storage.num <= 4) storage.balans = 1;
   else storage.balans = 4 / storage.num;
   if (storage.tops % 1 !== 0) return false;
-  let count1 = -1;
-  let count2;
+
   for (let i = 0; i < arr.length; i++) {
-    if (i % sqrt === 0) {
-      count1++;
-      P[count1] = [];
-      count2 = 0;
-    }
-    P[count1][count2] = arr[i];
-    count2++;
+    if (i % storage.tops === 0) P.push([]);
+    P[P.length - 1].push(arr[i]);
   }
   return P;
 };
